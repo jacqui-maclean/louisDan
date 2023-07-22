@@ -39,6 +39,7 @@ function App() {
     setSortedData(result);
     setAdvisory(message);
   };
+
   const sortData = (
     sortOrder: string,
     sortData: Product[],
