@@ -1,10 +1,10 @@
 import { useState } from "react";
-import "./App.css";
+import data from "./assets/data.json";
+import calculateSort from "./utilities/calculateSort";
 import CardList from "./components/CardList";
 import NavBar from "./components/Navbar/NavBar";
-import data from "./assets/data.json";
 import Advisory from "./components/Advisory";
-import calculateSort from "./utilities/calculateSort";
+import "./App.css";
 export interface Data {
   item: {
     products: Product[];
