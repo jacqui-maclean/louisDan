@@ -31,7 +31,7 @@ const calculateSort = (
       return acc;
     }, 0);
     if (nonNullValues <= 0) {
-      //all the items have null discountPercentage, so there is no value in sorting them
+      //if all the items have null discountPercentage,there is no value in sorting them
       onCalculateSort(
         sortData,
         "There are no discounts available on your selected items"

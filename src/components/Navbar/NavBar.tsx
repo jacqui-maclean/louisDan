@@ -4,7 +4,7 @@ interface Props {
   onSelect: (value: string) => void;
   selectedSortOrder: string;
 }
-
+//as a controlled component this component does just two things, receives sortOrder, and passes any chg to sortOrder up to the parent.
 const NavBar = ({ onSelect, selectedSortOrder }: Props) => {
   const selectors = [
     { label: "Relevance", value: "" },
@@ -15,8 +15,8 @@ const NavBar = ({ onSelect, selectedSortOrder }: Props) => {
   const currentSortOrder = selectors.find(
     (order) => order.value === selectedSortOrder
   );
-  console.log(currentSortOrder, "currentSortOrder");
-
+  //the event is handled at select level, and the value is passed to the parent component which controls this component
+  //in uncontrolled components, the value is handled by the DOM itself, and selected is allocated at option level
   return (
     <div className="container custom-container">
       <div className="input-group mb-3">
@@ -25,7 +25,9 @@ const NavBar = ({ onSelect, selectedSortOrder }: Props) => {
           onChange={(event) => onSelect(event.target.value)}
           className="form-select"
           id="inputGroupSelect01"
-          defaultValue={currentSortOrder?.label || "Recommended"}
+          //we can mark currentSortOrder as non-null eg ? because we know that it will always be there - it is passed from App.tsx
+          value={currentSortOrder?.label || "Recommended"}
+          //value is preferred over defaultValue because this is a controlled component
         >
           {selectors.map((selector) => {
             return (

@@ -31,6 +31,8 @@ function App() {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [sortedData, setSortedData] = useState<Product[]>(data.item.products);
   const [advisory, setAdvisory] = useState<string>("");
+  // when I get access to the API, I will useEffect to fetch the data here rather than importing it from the static data
+  //also I may decide to move the sorting logic to the backend, since I know I can pass the sortOrder as a query param
   const handleSort = (sortOrder: string) => {
     setSortOrder(sortOrder);
     calculateSort(sortOrder, sortedData, handleSortedData);
@@ -46,7 +48,7 @@ function App() {
       <NavBar onSelect={handleSort} selectedSortOrder={sortOrder} />
       <ResultCount count={sortedData.length} />
       <Advisory advisory={advisory} />
-      <CardList data={sortedData} />
+      <CardList products={sortedData} />
     </div>
   );
 }
