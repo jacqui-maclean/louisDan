@@ -6,21 +6,21 @@ const calculateSort = (
   onCalculateSort: (data: Product[], message: string) => void
 ) => {
   if (sortOrder == "") {
-    let sortedData = sortData
-      .slice() //preserves original array
-      .sort((a, b) => b.averageRating! - a.averageRating!);
+    let sortedData = sortData.sort(
+      (a, b) => b.averageRating! - a.averageRating!
+    );
     onCalculateSort(sortedData, "");
   }
   if (sortOrder == "2") {
-    let sortedData = sortData
-      .slice() //preserves original array
-      .sort((a, b) => a.price.priceIncTax - b.price.priceIncTax);
+    let sortedData = sortData.sort(
+      (a, b) => a.price.priceIncTax - b.price.priceIncTax
+    );
     onCalculateSort(sortedData, "");
   }
   if (sortOrder == "3") {
-    let sortedData = sortData
-      .slice() //preserves original array
-      .sort((a, b) => b.price.priceIncTax - a.price.priceIncTax);
+    let sortedData = sortData.sort(
+      (a, b) => b.price.priceIncTax - a.price.priceIncTax
+    );
     onCalculateSort(sortedData, "");
   }
   if (sortOrder == "4") {
@@ -35,11 +35,9 @@ const calculateSort = (
         "There are no discounts available on your selected items"
       );
     } else {
-      let sortedData = sortData
-        .slice() //preserves original array
-        .sort(
-          (a, b) => b.price.discountPercentage! - a.price.discountPercentage!
-        );
+      let sortedData = sortData.sort(
+        (a, b) => b.price.discountPercentage! - a.price.discountPercentage!
+      );
       onCalculateSort(sortedData, "");
     }
   }
