@@ -1,5 +1,6 @@
 import { Product } from "../App";
-
+//this utility function calculates the sort order and then uses a callback function (onCalculateSort) to update the state of the parent component
+//the callback function received two parameters: the sorted data and a message to display in case there are no discounts available
 const calculateSort = (
   sortOrder: string,
   sortData: Product[],
@@ -30,6 +31,7 @@ const calculateSort = (
       return acc;
     }, 0);
     if (nonNullValues <= 0) {
+      //all the items have null discountPercentage, so there is no value in sorting them
       onCalculateSort(
         sortData,
         "There are no discounts available on your selected items"
