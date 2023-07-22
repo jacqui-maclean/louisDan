@@ -1,34 +1,16 @@
-import data from "../assets/data.json";
 import ProductCard from "./ProductCard";
+import { Product } from "../App";
 
-interface Data {
-  item: {
-    products: Product[];
-  };
+interface Props {
+  data: Product[];
 }
 
-export interface Product {
-  productName: string;
-  id: string;
-  image: {
-    url: string;
-    attributes: {
-      imageAltText: string;
-    };
-  };
-  price: {
-    priceIncTax: number;
-    discountPercentage: null;
-  };
-  averageRating: number | null;
-}
-
-const CardList = () => {
+const CardList = ({ data }: Props) => {
   return (
     <div className="d-inline-flex p-2 flex-wrap justify-content-around align-items-center">
-      {data.item.products.map((product: Product) => {
+      {data.map((product: Product) => {
         return (
-          <div>
+          <div key={product.id}>
             <ProductCard product={product} />
           </div>
         );

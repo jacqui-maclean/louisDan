@@ -1,4 +1,4 @@
-import { Product } from "./CardList";
+import { Product } from "../App";
 
 interface Props {
   product: Product;
