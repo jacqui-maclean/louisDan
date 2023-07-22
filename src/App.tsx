@@ -5,6 +5,7 @@ import CardList from "./components/CardList";
 import NavBar from "./components/Navbar/NavBar";
 import Advisory from "./components/Advisory";
 import "./App.css";
+import ResultCount from "./components/ResultCount";
 export interface Data {
   item: {
     products: Product[];
@@ -43,6 +44,7 @@ function App() {
   return (
     <div className="App">
       <NavBar onSelect={handleSort} selectedSortOrder={sortOrder} />
+      <ResultCount count={sortedData.length} />
       <Advisory advisory={advisory} />
       <CardList data={sortedData} />
     </div>

@@ -21,7 +21,6 @@ const NavBar = ({ onSelect, selectedSortOrder }: Props) => {
     <div className="container custom-container">
       <div className="input-group mb-3">
         <label className="input-group-text">Sort by...</label>
-
         <select
           onChange={(event) => onSelect(event.target.value)}
           className="form-select"
