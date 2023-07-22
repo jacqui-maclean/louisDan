@@ -32,46 +32,56 @@ function App() {
   const [advisory, setAdvisory] = useState<string>("");
   const handleSort = (sortOrder: string) => {
     setSortOrder(sortOrder);
-    sortData(sortOrder);
+    sortData(sortOrder, sortedData, handleSortedData);
   };
-  const sortData = (sortOrder: string) => {
+  // A function that receives the calculated value and sets it as state in the parent component
+  const handleSortedData = (result: Product[]) => {
+    setSortedData(result);
+  };
+  const sortData = (
+    sortOrder: string,
+    sortData: Product[],
+    onCalculateSort: (data: Product[]) => void
+  ) => {
     if (sortOrder == "") {
-      let sortedData = data.item.products
+      let sortedData = sortData
         .slice() //preserves original array
         .sort((a, b) => b.averageRating! - a.averageRating!);
-      setSortedData(sortedData);
-      setAdvisory("");
+      onCalculateSort(sortedData);
+      // setSortedData(sortedData);
+      // setAdvisory("");
     }
     if (sortOrder == "2") {
-      let sortedData = data.item.products
+      let sortedData = sortData
         .slice() //preserves original array
         .sort((a, b) => a.price.priceIncTax - b.price.priceIncTax);
-      setSortedData(sortedData);
-      setAdvisory("");
+      onCalculateSort(sortedData);
+      // setSortedData(sortedData);
+      // setAdvisory("");
     }
     if (sortOrder == "3") {
-      let sortedData = data.item.products
+      let sortedData = sortData
         .slice() //preserves original array
         .sort((a, b) => b.price.priceIncTax - a.price.priceIncTax);
-      setSortedData(sortedData);
-      setAdvisory("");
+      onCalculateSort(sortedData);
+      // setSortedData(sortedData);
+      // setAdvisory("");
     }
     if (sortOrder == "4") {
-      let nonNullValues = data.item.products.reduce((acc, curr) => {
+      let nonNullValues = sortData.reduce((acc, curr) => {
         let { discountPercentage } = curr.price;
         discountPercentage !== null ? (acc = acc + 1) : (acc = acc + 0);
         return acc;
       }, 0);
       if (nonNullValues <= 0) {
         setAdvisory("There are no discounts available on your selected items");
-      }
-      let sortedData = data.item.products
-        .slice() //preserves original array
-        .sort(
-          (a, b) => b.price.discountPercentage! - a.price.discountPercentage!
-        );
-      if (nonNullValues > 0) {
-        setSortedData(sortedData);
+      } else {
+        let sortedData = sortData
+          .slice() //preserves original array
+          .sort(
+            (a, b) => b.price.discountPercentage! - a.price.discountPercentage!
+          );
+        onCalculateSort(sortedData);
       }
     }
   };
